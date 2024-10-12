@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Salário</title>
+    <link rel="shortcut icon" type="image/png" href="/static/favicon.png"/>
+    <style>
+        /* Estilos globais */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        /* Container principal */
+        .container {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Estilo da logomarca */
+        .logo {
+            width: 120px; /* Tamanho da imagem */
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        /* Estilo dos botões */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Rodapé */
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            button {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo da empresa -->
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo DSNS" class="logo">
+
+        <!-- Título -->
+        <h1>Calculadora de Salário</h1>
+
+        <!-- Botões CLT e PJ -->
+        <button onclick="window.location.href='/clt'">CLT</button>
+        <button onclick="window.location.href='/pj'">PJ</button>
+
+        <!-- Rodapé -->
+        <footer>
+            <p>Powered By Mateus Brito 2024</p>
+        </footer>
+    </div>
+</body>
+</html>

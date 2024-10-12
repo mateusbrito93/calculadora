@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build EXE with Icon",
+            "type": "shell",
+            "command": "pyinstaller",
+            "args": [
+                "--onefile",
+                "--windowed",
+                "--icon=money.ico",  // Substitua pelo caminho correto do seu ícone
+                "calculadora.py"      // Substitua pelo nome correto do seu arquivo Python
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}
