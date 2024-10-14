@@ -14,6 +14,16 @@ def calcular_vales(vale_transporte, vale_alimentacao, dias_trabalhados):
     total_vales = (vale_transporte + vale_alimentacao) * dias_trabalhados
     return total_vales
 
+# Função para calcular apenas o vale transporte
+def calcular_vale_transporte(vale_transporte, dias_trabalhados):
+    total_vale_transporte = vale_transporte * dias_trabalhados
+    return total_vale_transporte
+
+# Função para calcular apenas o vale alimentação
+def calcular_vale_alimentacao(vale_alimentacao, dias_trabalhados):
+    total_vale_alimentacao = vale_alimentacao * dias_trabalhados
+    return total_vale_alimentacao
+
 # Função para calcular apenas o salário líquido
 def calcular_salario_liquido(salario, gratificacao, inss_percentual):
     total1 = (salario + gratificacao) - ((salario + gratificacao) * inss_percentual)
@@ -51,6 +61,20 @@ def clt():
                     return redirect(url_for('clt'))
                 total_vales = calcular_vales(float(vale_transporte), float(vale_alimentacao), int(dias_trabalhados))
                 resultado = f'Total Vales: R$ {total_vales:.2f}'
+
+            elif operacao == 'calcular_vale_transporte':
+                if not (vale_transporte and dias_trabalhados):
+                    flash("Os campos Vale Transporte e Dias Trabalhados devem estar preenchidos.")
+                    return redirect(url_for('clt'))
+                total_vale_transporte = calcular_vale_transporte(float(vale_transporte), int(dias_trabalhados))
+                resultado = f'Total Vale Transporte: R$ {total_vale_transporte:.2f}'
+
+            elif operacao == 'calcular_vale_alimentacao':
+                if not (vale_alimentacao and dias_trabalhados):
+                    flash("Os campos Vale Alimentação e Dias Trabalhados devem estar preenchidos.")
+                    return redirect(url_for('clt'))
+                total_vale_alimentacao = calcular_vale_alimentacao(float(vale_alimentacao), int(dias_trabalhados))
+                resultado = f'Total Vale Alimentação: R$ {total_vale_alimentacao:.2f}'
 
             elif operacao == 'calcular_salario_liquido':
                 if not (salario and gratificacao and inss_percentual):
