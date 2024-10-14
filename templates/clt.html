@@ -11,11 +11,11 @@
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f9;
             margin: 0;
-            padding: 0;
+            padding: 20px; /* Adicione um pouco de padding para evitar que o conteúdo toque as bordas */
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
+            align-items: flex-start; /* Mude de center para flex-start para evitar compressão em telas pequenas */
+            min-height: 100vh; /* Em vez de height: 100vh, use min-height para permitir rolagem se necessário */
             color: #333;
         }
 
@@ -36,7 +36,7 @@
             max-width: 120px;
             height: auto;
             margin-bottom: 5px;
-            margin-top: 20px; /* Reduza a margem superior */
+            margin-top: 20px;
         }
 
         h1 {
