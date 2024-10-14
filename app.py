@@ -33,13 +33,41 @@ def calcular_salario_liquido(salario, gratificacao, inss_percentual):
 def calcular_salario_bruto(salario, gratificacao):
     return salario + gratificacao
 
+# Função para calcular o salário pj
+def calcular_salario(salario, imposto, contador, beneficios):
+    total3 = (salario - (salario * imposto)) - contador + beneficios
+    return total3
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/pj')
+@app.route('/pj', methods=['GET', 'POST'])
 def pj():
-    return render_template('pj.html')
+    if request.method == 'POST':
+        try:
+            # Coletar os valores dos campos
+            salario = request.form.get('salario', '').strip()
+            imposto = request.form.get('imposto', '').strip()
+            contador = request.form.get('contador', '').strip()
+            beneficios = request.form.get('beneficios', '').strip()
+            operacao = request.form['operacao']
+
+            # Validação dos campos para cada operação
+            if operacao == 'calcular_salario':
+                if not (salario and imposto and contador and beneficios):
+                    flash("Os campos Salário, Imposto, Contador e Benefícios devem estar preenchidos.")
+                    return redirect(url_for('pj'))
+                total3 = calcular_salario(float(salario), float(imposto) / 100, float(contador), float(beneficios))
+                resultado = f'Salário Total: R$ {total3:.2f}'
+
+            return render_template('pj.html', resultado=resultado)
+
+        except ValueError:
+            flash("Por favor, insira valores válidos.")
+            return redirect(url_for('pj'))
+
+    return render_template('pj.html', resultado=None)
 
 @app.route('/clt', methods=['GET', 'POST'])
 def clt():
